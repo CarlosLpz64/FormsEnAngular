@@ -1,0 +1,22 @@
+<h2>Peticiones API</h2>
+
+<p>Inserte la ID del usuairo</p>
+<input class="form-control" type="text" #textId>
+<br>
+<button class="btn btn-primary" (click)="getUser(textId.value)"> Cargar usuario </button>
+<hr>
+
+<div class="msgError" *ngIf="notFound">
+    Usuario no encontrado
+</div>
+<ng-container *ngIf="user && !notFound">
+    <div>
+        <b>Id:</b> {{user.id}}
+    </div>
+    <div>
+        <b>Nombre: </b> {{user.name}}
+    </div>
+    <div>
+        <b>Usuario:</b> {{user.username}}
+    </div>
+</ng-container>

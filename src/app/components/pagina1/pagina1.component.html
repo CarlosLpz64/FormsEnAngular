@@ -1,0 +1,34 @@
+<!-- TÍTULO -->
+<h1> DIRECTIVAS DE ANGULAR </h1>
+<hr>
+<!-- NGMODEL -->
+<h3> Ejemplo ngModel </h3>
+<div class="container">
+    <form>
+      <input class="form-control" type="text" name="nombre" [(ngModel)]="nombre">
+      <input class="form-control" type="text" name="edad" [(ngModel)]="edad">
+    </form>
+    <h5>Nombre: {{nombre}}</h5>
+    <h5>Edad: {{edad}}</h5>
+</div>
+
+<hr>
+<!-- NGFOR -->
+<h3> Ejemplo ngFor </h3>
+
+<div class="container">
+    <form (submit)="addUser(newUser)">
+        <input class="form-control" type="text" #newUser>
+        <br>
+        <button class="btn btn-primary"> Enviar usuario </button>
+    </form>
+</div>
+  <ul>
+    <li *ngFor="let user of users"> 
+      <p> {{user}} <button class="btn btn-danger" (click)="deleteUser(user)"> x </button> </p>
+    </li>
+  
+  </ul>
+  <hr>
+  
+<button (click)="navegar()"> Navegar a Pagina 2 </button>
