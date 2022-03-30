@@ -1,0 +1,99 @@
+
+<div *ngIf="oportunidad" class="alert alert-warning" role="alert">
+    Un asiento seleccionado ha sido ocupado
+</div>
+
+<div class="Escenario">
+    <h1> Seleccionar asientos</h1>
+
+    <div class="centrar">
+        <div class="pantalla"> Pantalla </div>
+    </div>
+  <div class="grid">
+      <!-- 
+    <div [class.disponible]="A1" [class.ocupado]="!A1" (click)="cambiarModo(1)">
+        <div> 
+            <h1> A1 </h1> 
+            <img src="https://cdn-icons-png.flaticon.com/512/302/302271.png">
+        </div>
+    </div>
+    -->
+
+    <div *ngFor="let asiento of Asientos; index as i" >
+        <div [class.disponible]="!asiento.estado" [class.ocupado]="asiento.estado" (click)="cambiarModo(asiento, i)">
+            <div> 
+                <h1> {{asiento.nombre}} </h1> 
+                <img *ngIf="asiento.seleccionado" class="encima" src="https://www.seekpng.com/png/full/21-210162_checkmark-png-17-1-transparent-background-powerpoint-check.png" alt="">
+                <img src="https://cdn-icons-png.flaticon.com/512/302/302271.png">
+            </div>
+        </div>
+    </div>
+    
+  </div>
+
+
+  <br> <br> <br> <br>
+  <button type="button" class="btn btn-warning" (click)="regresar()">REGRESAR</button>
+</div>
+
+<!--
+<h2> {{Seleccionados | json}}</h2>
+
+<h2> {{Asientos | json}}</h2>
+-->
+
+
+<div class="container">
+  <div id="Checkout" class="inline">
+      <h1>Total a pagar</h1>
+      <div class="card-row">
+          <span class="visa"></span>
+          <span class="mastercard"></span>
+          <span class="amex"></span>
+          <span class="discover"></span>
+      </div>
+      <form>
+          <div class="form-group">
+              <label for="PaymentAmount">Total</label>
+              <div class="amount-placeholder">
+                  <span>$</span>
+                  <span>{{total}}</span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label or="NameOnCard">Nombre</label>
+              <input id="NameOnCard" class="form-control" type="text" maxlength="255">
+          </div>
+          <div class="form-group">
+              <label for="CreditCardNumber">Número de tarjeta</label>
+              <input id="CreditCardNumber" class="null card-image form-control" type="text">
+          </div>
+          <div class="expiry-date-group form-group">
+              <label for="ExpiryDate">Expiración</label>
+              <input id="ExpiryDate" class="form-control" type="text" placeholder="MM / YY" maxlength="7">
+          </div>
+          <div class="security-code-group form-group">
+              <label for="SecurityCode">CVV</label>
+              <div class="input-container" >
+                  <input id="SecurityCode" class="form-control" type="text" >
+                  <i id="cvc" class="fa fa-question-circle"></i>
+              </div>
+              <div class="cvc-preview-container two-card hide">
+                  <div class="amex-cvc-preview"></div>
+                  <div class="visa-mc-dis-cvc-preview"></div>
+              </div>
+          </div>
+          <div class="zip-code-group form-group">
+              <label for="ZIPCode">ZIP</label>
+              <div class="input-container">
+                  <input id="ZIPCode" class="form-control" type="text" maxlength="10">
+                  <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" data-content="Enter the ZIP/Postal code for your credit card billing address."><i class="fa fa-question-circle"></i></a>
+              </div>
+          </div>
+          <button id="PayButton" class="btn btn-block btn-success submit-button" type="submit" (click)="comprarAsientos()" [disabled] = "Seleccionados.length == 0">
+              <span class="submit-button-lock"></span>
+              <span class="align-middle">Total ${{total}}</span>
+          </button>
+      </form>
+  </div>
+</div>

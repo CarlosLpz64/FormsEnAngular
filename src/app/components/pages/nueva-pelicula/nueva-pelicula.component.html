@@ -1,0 +1,117 @@
+
+<div class="mb-3">
+  <h3 for="formFile" class="form-label">Inserte una imagen</h3>
+  <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
+</div>
+
+<div class="alert alert-success" role="alert" *ngIf="createSucces"> ¡Película creada correctamente! </div>
+<div class="alert alert-danger" role="alert" *ngIf="createDanger"> Error crear película </div>
+
+<div class="containerFlex">
+  <div class="item">
+    <div class="card">
+      <h2 class="card-title">Vista previa</h2>
+      <img [src]="imgFile" alt="">
+    </div>
+  </div>
+
+  <div class="item2">
+    <h2> CREAR PELÍCULA</h2>
+    <form [formGroup]="miFormulario">
+      <!-- NOMBRE -->
+      Nombre: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombre"
+      value="{{nombre}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- DURACIÓN -->
+      Duración (minutos): 
+      <input 
+      [class.is-invalid]="miFormulario.get('duracion')?.touched 
+      && miFormulario.get('duracion')?.invalid" 
+      type="number" class="form-control" 
+      formControlName="duracion"
+      value="{{duracion}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('duracion')?.touched 
+      && miFormulario.get('duracion')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      Descripción: 
+      <input 
+      [class.is-invalid]="miFormulario.get('descripcion')?.touched 
+      && miFormulario.get('descripcion')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="descripcion"
+      value="{{descripcion}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('descripcion')?.touched 
+      && miFormulario.get('descripcion')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- CATEGORÍA -->
+      <div class="dropdown marginTop">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Categoría: {{nombreCategoria}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let categoria of ListaCategorias" (click)="selectCategoria(categoria)">
+              <a class="dropdown-item">{{categoria.nombre}}</a>
+            </li>
+        </ul>
+      </div>
+
+      <!-- DIRECTOR -->
+      <div class="dropdown marginTop">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Director: {{nombreDirector}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let director of ListaDirectores" (click)="selectDirector(director)">
+              <a class="dropdown-item">{{director.nombre}}</a>
+            </li>
+        </ul>
+      </div>
+
+      <!-- PRODUCTORA -->
+      <div class="dropdown marginTop">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Productora: {{nombreProductora}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let productora of ListaProductoras" (click)="selectProductora(productora)">
+              <a class="dropdown-item">{{productora.nombre}}</a>
+            </li>
+        </ul>
+      </div>
+
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="createModel()"> Crear </button>
+      </div>
+    </form>    
+  </div>
+</div>
+
+
+
+

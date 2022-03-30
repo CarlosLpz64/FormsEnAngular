@@ -1,0 +1,152 @@
+<h2> PELÍCULAS </h2>  
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-success me-md-2" type="button" (click)="nuevoModelo()">Nueva película</button>
+</div>
+<br>
+
+<div *ngIf="!ListaModels"  class="d-flex justify-content-center" style="margin-top: 20px;">
+  <div class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Duración</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Director</th>
+        <th scope="col">Productora</th>
+        <th scope="col">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of ListaModels" (click)="selectModel(model)">
+        <td>{{model.nombre}} </td>
+        <td>{{model.duracion}} </td>
+        <td>{{model.Categoria.nombre}} </td>
+        <td>{{model.Directore.nombre}}</td>
+        <td>{{model.Productura.nombre}} </td>
+        <td>{{model.descripcion}} </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div [class.ocultar]="!Seleccionado">
+    <h2> ACTUALIZAR PELÍCULA</h2>
+    <form [formGroup]="miFormulario">
+      <!-- NOMBRE -->
+      Nombre: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombre"
+      value="{{nombre}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- DURACIÓN -->
+      Duración: 
+      <input 
+      [class.is-invalid]="miFormulario.get('duracion')?.touched 
+      && miFormulario.get('duracion')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="duracion"
+      value="{{duracion}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('duracion')?.touched 
+      && miFormulario.get('duracion')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- descripcion -->
+      Descripción: 
+      <input 
+      [class.is-invalid]="miFormulario.get('descripcion')?.touched 
+      && miFormulario.get('descripcion')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="descripcion"
+      value="{{descripcion}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('descripcion')?.touched 
+      && miFormulario.get('descripcion')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- nombreCategoria -->
+      Categoría: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombreCategoria')?.touched 
+      && miFormulario.get('nombreCategoria')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombreCategoria"
+      value="{{nombreCategoria}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombreCategoria')?.touched 
+      && miFormulario.get('nombreCategoria')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- nombreDirector -->
+      Director: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombreDirector')?.touched 
+      && miFormulario.get('nombreDirector')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombreDirector"
+      value="{{nombreDirector}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombreDirector')?.touched 
+      && miFormulario.get('nombreDirector')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+      <!-- nombreProductora -->
+      Productora: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombreProductora')?.touched 
+      && miFormulario.get('nombreProductora')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombreProductora"
+      value="{{nombreProductora}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombreProductora')?.touched 
+      && miFormulario.get('nombreProductora')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="updateModel()"> Actualizar </button>
+        <button class="btn btn-danger" type="submit" (click)="deleteModel()"> Eliminar </button>
+      </div>
+    </form>
+
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="updateSucces"> ¡Actualizado correctamente! </div>
+    <div class="alert alert-danger" role="alert" *ngIf="updateDanger"> Error al actualizar </div>
+ </div>
+ <div class="alert alert-success" role="alert" *ngIf="deleteSucces"> ¡Eliminado correctamente! </div>
+ <div class="alert alert-danger" role="alert" *ngIf="deleteDanger"> Error al eliminar </div>
+

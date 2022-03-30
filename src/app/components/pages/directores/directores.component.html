@@ -1,0 +1,61 @@
+<h2> DIRECTORES </h2>  
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-success me-md-2" type="button" (click)="nuevoModelo()">Nuevo director</button>
+</div>
+<br>
+
+<div *ngIf="!ListaModels"  class="d-flex justify-content-center" style="margin-top: 20px;">
+  <div class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of ListaModels" (click)="selectModel(model)">
+        <td>{{model.nombre}} </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div [class.ocultar]="!Seleccionado">
+    <h2> ACTUALIZAR DIRECTOR</h2>
+    <form [formGroup]="miFormulario">
+      <!-- NOMBRE -->
+      Nombre: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombre"
+      value="{{nombre}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid">
+        <div class="msgError"> Datos incorrectos</div>
+      </div>
+
+
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="updateModel()"> Actualizar </button>
+        <button class="btn btn-danger" type="submit" (click)="deleteModel()"> Eliminar </button>
+      </div>
+    </form>
+
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="updateSucces"> ¡Actualizado correctamente! </div>
+    <div class="alert alert-danger" role="alert" *ngIf="updateDanger"> Error al actualizar </div>
+ </div>
+ <div class="alert alert-success" role="alert" *ngIf="deleteSucces"> ¡Eliminado correctamente! </div>
+ <div class="alert alert-danger" role="alert" *ngIf="deleteDanger"> Error al eliminar </div>

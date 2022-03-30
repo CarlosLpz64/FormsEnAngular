@@ -1,7 +1,68 @@
-<h1>Ejemplo de Angular Routing</h1>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a routerLink="/home" routerLinkActive="active-link" class="nav-link"> Home</a>
-    <a routerLink="/pagina1" routerLinkActive="active-link" class="nav-link"> Directivas</a>
-    <a routerLink="/pagina2" routerLinkActive="active-link" class="nav-link"> Forms</a>
-    <a routerLink="/apis" routerLinkActive="active-link" class="nav-link"> Apis </a>
-</nav>
+
+<!--
+<div *ngIf="variablesGlobales.isLogged">
+    <h1>Cines de México</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a routerLink="/home" routerLinkActive="active-link" class="nav-link"> Directivas</a>
+        <a routerLink="/indice" routerLinkActive="active-link" class="nav-link"> Índice</a>
+        <a routerLink="/apis" routerLinkActive="active-link" class="nav-link"> Apis </a>
+        <button (click)="logout()" type="button" class="btn btn-danger"> Cerrar sesión</button>
+    </nav>
+</div>
+-->
+
+
+<div id="main" *ngIf="variablesGlobales.isLogged" >
+    <div class="fixed-top">
+      <nav>
+        <div class="nav-fostrap">
+          <ul>
+            <!-- HOME -->
+            <li><a routerLink="/home">Home</a></li>
+            <!-- USUARIOS -->
+            <li *ngIf="variablesGlobales.isAdmin"><a>Usuarios<span class="arrow-down"></span></a>
+              <ul class="dropdown">
+                <li><a routerLink="/indice"> Editar usuarios </a></li>
+              </ul>
+            </li>
+            <!-- REGISTROS GENERALES -->
+            <li *ngIf="variablesGlobales.isAdmin"><a>Registrar<span class="arrow-down"></span></a>
+              <ul class="dropdown">
+                <li><a routerLink="/actores"> Actores </a></li>
+                <li><a routerLink="/directores"> Directores </a></li>
+                <li><a routerLink="/categorias"> Categorías </a></li>
+                <li><a routerLink="/productoras"> Productoras </a></li>
+              </ul>
+            </li>
+            <!-- REGISTROS GENERALES -->
+            <li *ngIf="variablesGlobales.isAdmin"><a>Peliculas<span class="arrow-down"></span></a>
+              <ul class="dropdown">
+                <li><a routerLink="/peliculas"> Añadir película </a></li>
+              </ul>
+            </li>
+            <!-- SELECCIONAR CINE -->
+            <li><a routerLink="/cines">Seleccionar cine</a></li>
+            <!-- OPCIONES POR CINE -->
+            <li *ngIf="variablesGlobales.isAdmin"><a>Opciones cine<span class="arrow-down"></span></a>
+              <ul class="dropdown">
+                <li><a routerLink="/salas"> Salas </a></li>
+                <li><a routerLink="/funciones"> Funciones </a></li>
+              </ul>
+            </li>
+            <!-- VER CARTELERA -->
+            <li><a routerLink="/cartelera"> Ver cartelera</a></li>
+            <!-- VER TICKETS 
+            <li><a routerLink="/tickets"> Ver mis compras</a></li>
+            -->
+            <!-- CERRAR SESIÓN -->
+            <li><a (click)="logout()" class="cerrarSesion" href="#">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="miCine">
+        <b>Cine seleccionado:</b> {{variablesGlobales.nombreCine}}
+      </div>
+  </div>
+  </div>
+
+  <br><br><br><br>

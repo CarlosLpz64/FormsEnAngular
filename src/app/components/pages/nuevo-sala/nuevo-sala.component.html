@@ -1,0 +1,50 @@
+<h2> Nueva Sala</h2>
+<div class="container">
+
+    <form [formGroup]="miFormulario">
+      <!-- NÚMERO -->
+      Sala #: 
+      <input 
+      [class.is-invalid]="miFormulario.get('numero')?.touched 
+      && miFormulario.get('numero')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="numero">
+
+      <div
+      *ngIf="miFormulario.get('numero')?.touched 
+      && miFormulario.get('numero')?.invalid">
+        <div class="msgError"> Inserte un valor válido</div>
+      </div>
+
+      <!-- CINE -->
+      Cine: 
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Seleccionar cine
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li *ngFor="let miCine of ListaCines" (click)="selectCine(miCine)">
+              <a class="dropdown-item">{{miCine.nombre}}</a>
+            </li>
+        </ul>
+      </div>
+
+      <h4> {{nombreCine}}</h4>
+  
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="store()"> Enviar </button>
+      </div>
+    </form>
+
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="creadoSucces"> ¡Sala creada correctamente! </div>
+    <div class="alert alert-danger" role="alert" *ngIf="creadoDanger"> Error al crear Sala </div>
+
+    <br>
+    <!--
+    {{ miFormulario.value | json}}
+    -->
+  </div>

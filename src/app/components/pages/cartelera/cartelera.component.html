@@ -1,0 +1,22 @@
+<h1> CARTELERA </h1>
+
+<div [class.ocultar]="variablesGlobales.cineSeleccionado">
+  <h2> Primero debes seleccionar un cine </h2>
+</div>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+<div [class.ocultar]="!variablesGlobales.cineSeleccionado">
+  <div class="cards">
+    <div class="card" *ngFor="let model of ListaModels" (click)="verAsientos(model.funcion_id)">
+      <h2 class="card-title">{{model.nombre}}</h2>
+      <img [src]="model.imagenes" alt="">
+      <p class="card-desc"> 
+        <b>Fecha y hora: </b> {{model.fecha}}
+        <b>Sala: #</b> {{model.sala}} 
+        <b>Descripción: </b> {{model.descripcion}}
+        <b>Duración: </b> {{model.duracion}} minutos
+      </p>
+    </div>
+</div>
+

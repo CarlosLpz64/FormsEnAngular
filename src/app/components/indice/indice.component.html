@@ -1,0 +1,78 @@
+<h2> USUARIOS </h2>  
+
+<div *ngIf="!users"  class="d-flex justify-content-center" style="margin-top: 20px;">
+  <div class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Username</th>
+        <th scope="col">Fecha nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" (click)="selectUser(user)">
+        <td>{{user.email}} </td>
+        <td>{{user.username}}</td>
+        <td>{{user.birthday}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div [class.ocultar]="!userSelected">
+    <h2> ACTUALIZAR USUARIO</h2>
+    <form [formGroup]="miFormulario">
+      <!-- USUARIO -->
+      Usuario: 
+      <input 
+      [class.is-invalid]="miFormulario.get('username')?.touched 
+      && miFormulario.get('username')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="username"
+      value="{{username}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('username')?.touched 
+      && miFormulario.get('username')?.invalid">
+        <div class="msgError"> El usuario debe contener al menos 3 caracteres</div>
+      </div>
+
+      <!-- Fecha -->
+
+      Fecha de nacimiento: 
+      <input 
+      [class.is-invalid]="miFormulario.get('birthday')?.touched 
+      && miFormulario.get('birthday')?.invalid"
+      type="date" 
+      class="form-control"
+      formControlName="birthday"
+      value="{{birthday}}"
+      >
+
+      <div
+      *ngIf="miFormulario.get('birthday')?.touched 
+      && miFormulario.get('birthday')?.invalid">
+        <div class="msgError"> Por favor inserte una fecha válida</div>
+      </div>
+
+
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="update()"> Actualizar </button>
+        <button class="btn btn-danger" type="submit" (click)="deleteUser()"> Eliminar </button>
+      </div>
+    </form>
+
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="updateSucces"> ¡Usuario actualizado correctamente! </div>
+    <div class="alert alert-danger" role="alert" *ngIf="updateDanger"> Error al actualizar usuario </div>
+ </div>
+ <div class="alert alert-success" role="alert" *ngIf="deleteSucces"> ¡Usuario eliminado correctamente! </div>
+ <div class="alert alert-danger" role="alert" *ngIf="deleteDanger"> Error al eliminar usuario </div>

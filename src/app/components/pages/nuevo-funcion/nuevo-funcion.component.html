@@ -1,0 +1,60 @@
+<h1> CREAR FUNCIÓN </h1>  
+  <div class="alert alert-success" role="alert" *ngIf="createSucces"> ¡Película creada correctamente! </div>
+  <div class="alert alert-danger" role="alert" *ngIf="createDanger"> Error crear película </div>
+  
+      <form [formGroup]="miFormulario">
+        <!-- FECHA -->
+        Fecha: 
+        <input 
+        [class.is-invalid]="miFormulario.get('fecha')?.touched 
+        && miFormulario.get('fecha')?.invalid" 
+        type="datetime-local" class="form-control" 
+        formControlName="fecha"
+        value="{{fecha}}"
+        >
+  
+        <div
+        *ngIf="miFormulario.get('fecha')?.touched 
+        && miFormulario.get('fecha')?.invalid">
+          <div class="msgError"> Datos incorrectos</div>
+        </div>
+  
+        
+  
+        <!-- SALA -->
+        <div class="dropdown marginTop">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Sala: {{nombreSala}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li *ngFor="let sala of ListaSalas" (click)="selectSala(sala)">
+                <a class="dropdown-item">{{sala.Cine.nombre}} - Sala #{{sala.numero}}</a>
+              </li>
+          </ul>
+        </div>
+  
+        <!-- PELÍCULA -->
+        <div class="dropdown marginTop">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Película: {{nombrePelicula}}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li *ngFor="let pelicula of ListaPeliculas" (click)="selectPelicula(pelicula)">
+                <a class="dropdown-item">{{pelicula.nombre}}</a>
+              </li>
+          </ul>
+        </div>
+  
+
+        <!-- BOTÓN -->
+        
+        <br>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit" (click)="createModel()"> Crear </button>
+        </div>
+      </form>    
+  
+  
+  
+  
+  

@@ -22,7 +22,7 @@ export class ApisComponent implements OnInit {
     
     
     this.userService.getUser(userId).subscribe({
-        next: (userFromTheAPI : User) => this.user = userFromTheAPI,
+        next: (userFromTheAPI : User) => [this.user = userFromTheAPI, console.log(userFromTheAPI)],
         error: (e) => [console.error(e), this.notFound = true],
         complete: () => console.info('complete') 
     })

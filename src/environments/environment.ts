@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://jsonplaceholder.typicode.com/'
+  apiURL: 'https://jsonplaceholder.typicode.com/',
+  usersCRUD: 'http://192.168.43.8:3334'
+  //usersCRUD: 'http://3.91.152.87:3334'
 };
 
 /*

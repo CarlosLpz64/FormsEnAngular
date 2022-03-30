@@ -1,0 +1,21 @@
+<h1> Seleccionar cine</h1>
+
+<div *ngIf="variablesGlobales.isAdmin" class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-success me-md-2" type="button" (click)="nuevoModelo()">Nuevo cine</button>
+</div>
+
+<div *ngIf="!ListaModels"  class="d-flex justify-content-center" style="margin-top: 20px;">
+    <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+
+<div class="cineOpc" *ngFor="let model of ListaModels" (click)="selectModel(model)">
+    <div class="cineTitle">
+        {{model.nombre}}
+    </div>
+    <div class="cineDesc">
+        {{model.direccion}}
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<h2> Nuevo cine</h2>
+<div class="container">
+
+    <form [formGroup]="miFormulario">
+      <!-- USUARIO -->
+      Nombre: 
+      <input 
+      [class.is-invalid]="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="nombre">
+
+      <div
+      *ngIf="miFormulario.get('nombre')?.touched 
+      && miFormulario.get('nombre')?.invalid">
+        <div class="msgError"> Inserte un valor válido</div>
+      </div>
+  
+      <!-- DIRECCIÓN -->
+
+      Dirección: 
+      <input 
+      [class.is-invalid]="miFormulario.get('direccion')?.touched 
+      && miFormulario.get('direccion')?.invalid" 
+      type="text" class="form-control" 
+      formControlName="direccion">
+
+      <div
+      *ngIf="miFormulario.get('direccion')?.touched 
+      && miFormulario.get('direccion')?.invalid">
+        <div class="msgError"> Inserte un valor válido </div>
+      </div>
+
+
+      <!-- BOTÓN -->
+      
+      <br>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" (click)="store()"> Enviar </button>
+      </div>
+    </form>
+
+    <br>
+    <div class="alert alert-success" role="alert" *ngIf="creadoSucces"> ¡Cine creado correctamente! </div>
+    <div class="alert alert-danger" role="alert" *ngIf="creadoDanger"> Error al crear Actor </div>
+
+    <br>
+    <!--
+    {{ miFormulario.value | json}}
+    -->
+  </div>

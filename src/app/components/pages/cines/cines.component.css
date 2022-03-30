@@ -1,0 +1,18 @@
+.cineTitle{
+    width: 100%;
+    background-color: rgb(30, 67, 102);
+    height: 8vh;
+    font-size: 30px;
+    color: white;
+}
+.cineDesc{
+    width: 100%;
+    background-color: rgb(159, 181, 230);
+    height: 5vh;
+    font-size: 15px;
+    color: black;
+}
+
+.cineOpc{
+    margin-top: 15px;
+}
